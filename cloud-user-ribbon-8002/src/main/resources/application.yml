@@ -1,0 +1,69 @@
+server:
+  port: 8002
+
+
+
+eureka:
+  client:
+    #表示是否将自己注册进EurekaServer默认为true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:7001/eureka/ #单机版
+      #defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka  #集群版
+  instance:
+    hostname: localhost
+    instance-id: service-${eureka.instance.hostname}:${server.port} #向服务提供自己的名字
+    prefer-ip-address: true
+    #访问路径可以显示IP地址
+    #Eureka客户端向服务端发送心跳的时间间隔，单位为秒（默认是30秒）
+    #lease-renewal-interval-in-seconds: 1
+    #Eurekaf服务端在收到最后一次心跳后等待时间上限，单位为秒（默认是90秒），超时将剔除服务
+    #lease-expiration-duration-in-seconds: 2
+logging:
+  config: classpath:logback-jdbc.xml
+
+
+
+#Mybatisplus的配置
+mybatis-plus:
+  type-aliases-package: com.zl.house.user.entity
+  mapper-locations: classpath*:mapper/*Mapper.xml
+
+#mysql数据库四大参数
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@10.1.11.132:1521:orcl
+    username: scott
+    password: tiger
+    #指定使用哪个数据源
+    #type: org.apache.commons.dbcp2.BasicDataSource
+    #type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initSize: 10
+      maxSize: 100
+      minSize: 10
+  profiles:
+    active: dev
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    #json对属性值为null 忽略
+    default-property-inclusion: NON_NULL
+  application:
+    name: house-userService
+
+info:
+  app:
+    name: helloServer-microcloud
+  author:
+    name: suke
+  build:
+    artifactId: $project.artifactId$
+    version: $project.version$
+  company:
+    name: www.zl.com
+  server:
+    port: ${server.port}

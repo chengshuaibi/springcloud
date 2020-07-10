@@ -1,0 +1,5 @@
+# Project exclude paths
+/cloud-api-common/target/
+/cloud-house-service-8003/target/
+/cloud-user-8001/target/
+/cloud-user-ribbon-8002/target/

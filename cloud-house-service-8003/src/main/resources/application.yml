@@ -1,0 +1,51 @@
+server:
+  port: 8003
+  
+#指令日志的配置文件
+
+
+#Mybatisplus的配置
+mybatis-plus:
+  type-aliases-package: com.zl.house.house.entity
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  
+#mysql数据库四大参数
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@10.1.11.132:1521:orcl
+    username: scott
+    password: tiger
+    #指定使用哪个数据源
+    #type: org.apache.commons.dbcp2.BasicDataSource
+    #type: com.alibaba.druid.pool.DruidDataSource
+    druid: 
+       initSize: 10
+       maxSize: 100
+       minSize: 10
+  profiles:
+    active: dev
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    #json对属性值为null 忽略
+    default-property-inclusion: NON_NULL
+  application:
+    name: house-houseService
+
+#eureka相关配置
+eureka:
+  instance:
+    hostname: 127.0.0.1
+   #设置是否将自己作为客户端注册到注册中心(缺省true)
+   #这里为不需要,查看@EnableEurekaServer注解的源码,会发现它间接用到了@EnableDiscoveryClient
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:7001/eureka/
+
+house:
+  url: http://house-userService/user/queryById/
+
+
+
+    
