@@ -67,3 +67,6 @@ info:
     name: www.zl.com
   server:
     port: ${server.port}
+ribbon:
+  eureka:
+    enabled: true

@@ -10,11 +10,12 @@
 
     <modules>
 
-        <module>cloud-house-service-8003</module>
+        <module>cloud-house-service-10001</module>
         <module>cloud-eureka-server-7001</module>
         <module>cloud-api-common</module>
         <module>cloud-user-ribbon-8002</module>
         <module>cloud-user-8001</module>
+        <module>cloud-house-service-10002</module>
     </modules>
 
     <!--统一管理jar包版本-->

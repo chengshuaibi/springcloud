@@ -18,6 +18,9 @@ public class HouseController {
 	@Value("${house.url}")
 	private String queryUri;
 
+	@Value("${server.port}")
+	private int port;
+
 	@ResponseBody
 	@RequestMapping("/queryUserHouse/{id}")
 	public JSONResult queryUserHouse(@PathVariable("id")Integer id)throws Exception{
@@ -25,6 +28,11 @@ public class HouseController {
 		JSONResult jsonResult = restTemplate.getForObject(queryUri+id, JSONResult.class);
 		return jsonResult;
 	}
+	@RequestMapping("/sayHello")
+	public String sayhello(){
+		return "nihao";
+	}
+
 
 	
 }
