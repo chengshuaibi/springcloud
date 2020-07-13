@@ -1,6 +1,7 @@
 package com.zl.house.house.controller;
 
-import org.aspectj.weaver.ast.Test;
+
+import com.zl.house.house.entity.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,9 @@ public class HouseController {
 	public String sayhello(){
 		return "nihao"+port;
 	}
+
 	@RequestMapping(value = "/test",method = RequestMethod.POST)
 	void test(@RequestBody Test test){
 		System.out.println(test);
 	}
-
 }

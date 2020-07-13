@@ -1,5 +1,6 @@
 package com.zl.house.user.controller;
 
+import com.zl.house.user.client.HouseServiceClient;
 import com.zl.house.user.entity.User;
 import com.zl.house.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class UserController {
 	
 	@Value("${server.port}")
 	private int port;
-	
+	@Autowired
+	private HouseServiceClient houseServiceClient;
 	@GetMapping("/queryById/{id}")
 	public JSONResult<User> queryUserById(@PathVariable("id")Integer id) throws Exception{
 		JSONResult<User> jsonResult = new JSONResult<>();
@@ -32,5 +34,10 @@ public class UserController {
 			jsonResult.setData(user);
 		}
 		return jsonResult;
+	}
+	@RequestMapping("/test")
+	public String test(){
+		String sayhello = houseServiceClient.sayhello();
+		return sayhello;
 	}
 }
